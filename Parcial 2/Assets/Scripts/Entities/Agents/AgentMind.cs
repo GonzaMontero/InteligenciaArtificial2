@@ -48,6 +48,7 @@ namespace Entities.Agents
         public int CurrentIteration => currentIteration;
 
         protected AgentData agentData;
+        public AgentData AgentData => agentData;
         private int generationsSurvived = 0;
 
         public State state
@@ -82,7 +83,7 @@ namespace Entities.Agents
 
             if (resetAI)
             {
-                //OnReset();
+                OnReset();
             }
         }
 
@@ -95,7 +96,7 @@ namespace Entities.Agents
 
                 this.map = map;
 
-                //agentBehaviour.SetBehaviourNeeds(OnAteFood, food);
+                agentBehaviour.SetBehaviourNeeds(OnAteFood, food);
 
                 OnThink(dt, map, food);
             }
@@ -131,7 +132,7 @@ namespace Entities.Agents
 
             inputs.Add(foodCollected);
             inputs.Add(agentBehaviour.transform.position.magnitude);
-            //inputs.Add(FindClosestFood(food));
+            inputs.Add(FindClosestFood(food));
 
             if (adjacentCellsToAgent.Any())
             {
