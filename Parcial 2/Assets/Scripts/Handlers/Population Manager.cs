@@ -294,7 +294,7 @@ namespace Handlers.Population
                 }
             }
 
-            List<Genome> newGenomes = geneticAlgorithm.Epoch(genomesThatSurvived.ToArray(), PopulationCount).ToList();
+            List<Genome> newGenomes = geneticAlgorithm.Epoch(genomesThatSurvived.ToArray(), PopulationCount, 2).ToList();
 
             population.Clear();
 
@@ -409,14 +409,14 @@ namespace Handlers.Population
 
         private NeuralNetwork CreateBrain(NeuralNetwork neuralNetwork)
         {
-            NeuralNetwork brain = new NeuralNetwork(neuralNetwork.neuronCountsPerHL, neuralNetwork.outputsCount);
+            NeuralNetwork brain = new NeuralNetwork(neuralNetwork.neuronCountsPerLayer, neuralNetwork.outputsCount);
 
             if (neuralNetwork.layers.Count < 1)
                 return null;
 
             Bias = neuralNetwork.layers[0].bias;
             Sigmoid = neuralNetwork.layers[0].p;
-            NeuronsCountPerHL = neuralNetwork.neuronCountsPerHL;
+            NeuronsCountPerHL = neuralNetwork.neuronCountsPerLayer;
 
             // Add first neuron layer that has as many neurons as inputs
             brain.AddFirstNeuronLayer(neuralNetwork.inputsCount, Bias, Sigmoid);

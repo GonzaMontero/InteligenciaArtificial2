@@ -336,7 +336,7 @@ namespace Handlers.Simulation
 
                             FileHandler<AgentData>.Save(bestTeamAgent.AgentData, teams[i].PopulationManager.ID, 
                                 teams[i].PopulationManager.generation.ToString(), bestTeamAgent.Genome.fitness.ToString(), 
-                                bestTeamAgent.Genome.foodEated.ToString());
+                                bestTeamAgent.Genome.foodEaten.ToString());
                         }
                     }
                 }
