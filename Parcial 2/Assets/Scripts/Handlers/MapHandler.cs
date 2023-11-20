@@ -235,10 +235,11 @@ namespace Handlers.Map
             }
 
             List<Cell> sortedList = new List<Cell>();
-            for (int i = listOfCells.Count - 1; i > 0; i--)
+            for (int i = listOfCells.Count - 1; i >= 0; i--)
             {
                 sortedList.Add(listOfCells[i]);
             }
+
             return sortedList;
         }
 

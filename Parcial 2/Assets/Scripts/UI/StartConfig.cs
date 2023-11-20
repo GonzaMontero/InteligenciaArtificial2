@@ -43,16 +43,6 @@ namespace UI
         {
             this.populationManager = populationManager;
 
-            populationCountItem.slider.onValueChanged.AddListener(OnPopulationCountChange);
-            eliteCountItem.slider.onValueChanged.AddListener(OnEliteCountChange);
-            mutationChanceItem.slider.onValueChanged.AddListener(OnMutationChanceChange);
-            mutationRateItem.slider.onValueChanged.AddListener(OnMutationRateChange);
-            hiddenLayersItem.slider.onValueChanged.AddListener(OnHiddenLayersCountChange);
-            neuronsPerLayerItem.slider.onValueChanged.AddListener(OnNeuronsPerLayerChange);
-            biasItem.slider.onValueChanged.AddListener(OnBiasChange);
-            sigmoidSlopeItem.slider.onValueChanged.AddListener(OnSigmoidSlopeChange);
-            inputsItem.slider.onValueChanged.AddListener(OnInputsChange);
-            outputsItem.slider.onValueChanged.AddListener(OnOutputsChange);
 
             populationCountItem.slider.minValue = 0;
             populationCountItem.slider.maxValue = maxGridX;
@@ -67,6 +57,17 @@ namespace UI
             sigmoidSlopeItem.slider.value = populationManager.Sigmoid;
             inputsItem.slider.value = populationManager.InputsCount;
             outputsItem.slider.value = populationManager.OutputsCount;
+
+            populationCountItem.slider.onValueChanged.AddListener(OnPopulationCountChange);
+            eliteCountItem.slider.onValueChanged.AddListener(OnEliteCountChange);
+            mutationChanceItem.slider.onValueChanged.AddListener(OnMutationChanceChange);
+            mutationRateItem.slider.onValueChanged.AddListener(OnMutationRateChange);
+            hiddenLayersItem.slider.onValueChanged.AddListener(OnHiddenLayersCountChange);
+            neuronsPerLayerItem.slider.onValueChanged.AddListener(OnNeuronsPerLayerChange);
+            biasItem.slider.onValueChanged.AddListener(OnBiasChange);
+            sigmoidSlopeItem.slider.onValueChanged.AddListener(OnSigmoidSlopeChange);
+            inputsItem.slider.onValueChanged.AddListener(OnInputsChange);
+            outputsItem.slider.onValueChanged.AddListener(OnOutputsChange);
 
             startButton.onClick.AddListener(() => { OnStartButtonClick(false); });
 
@@ -101,28 +102,28 @@ namespace UI
         {
             populationManager.PopulationCount = (int)value;
 
-            populationCountItem.text.text = string.Format(populationCountItem.text.text, populationManager.PopulationCount);
+            populationCountItem.text.text = "Population Count - " + populationManager.PopulationCount;
         }
 
         private void OnEliteCountChange(float value)
         {
             populationManager.EliteCount = (int)value;
 
-            populationCountItem.text.text = string.Format(populationCountItem.text.text, populationManager.EliteCount);
+            eliteCountItem.text.text = "Elite Count - " + populationManager.EliteCount;
         }
 
         private void OnMutationChanceChange(float value)
         {
             populationManager.MutationChance = value / 100.0f;
 
-            mutationChanceItem.text.text = string.Format(mutationChanceItem.text.text, (int)(populationManager.MutationChance * 100));
+            mutationChanceItem.text.text = "Mutation Chance - " + (int)(populationManager.MutationChance * 100);
         }
 
         private void OnMutationRateChange(float value)
         {
             populationManager.MutationRate = value / 100.0f;
 
-            mutationRateItem.text.text = string.Format(mutationRateItem.text.text, (int)(populationManager.MutationRate * 100));
+            mutationRateItem.text.text = "Mutation Rate - " + (int)(populationManager.MutationRate * 100);
         }
 
         private void OnHiddenLayersCountChange(float value)
@@ -130,28 +131,28 @@ namespace UI
             populationManager.HiddenLayers = (int)value;
 
 
-            hiddenLayersItem.text.text = string.Format(hiddenLayersItem.text.text, populationManager.HiddenLayers);
+            hiddenLayersItem.text.text = "Hidden Layers - " + populationManager.HiddenLayers;
         }
 
         private void OnNeuronsPerLayerChange(float value)
         {
             populationManager.NeuronsCountPerHL = (int)value;
 
-            neuronsPerLayerItem.text.text = string.Format(neuronsPerLayerItem.text.text, populationManager.NeuronsCountPerHL);
+            neuronsPerLayerItem.text.text = "Neurons Per HL - " + populationManager.NeuronsCountPerHL;
         }
 
         private void OnBiasChange(float value)
         {
             populationManager.Bias = -value;
 
-            biasItem.text.text = string.Format(biasItem.text.text, populationManager.Bias.ToString("0.00"));
+            biasItem.text.text = "Bias - " + populationManager.Bias.ToString("0.00");
         }
 
         private void OnSigmoidSlopeChange(float value)
         {
             populationManager.Sigmoid = value;
 
-            sigmoidSlopeItem.text.text = string.Format(sigmoidSlopeItem.text.text, populationManager.Sigmoid.ToString("0.00"));
+            sigmoidSlopeItem.text.text = "Sigmoid - " + populationManager.Sigmoid.ToString("0.00");
         }
 
 
@@ -167,28 +168,28 @@ namespace UI
         {
             populationManager.InputsCount = (int)value;
 
-            inputsItem.text.text = string.Format(inputsItem.text.text, populationManager.InputsCount);
+            inputsItem.text.text = "Inputs - " + populationManager.InputsCount;
         }
 
         private void OnOutputsChange(float value)
         {
             populationManager.OutputsCount = (int)value;
 
-            outputsItem.text.text = string.Format(outputsItem.text.text, populationManager.OutputsCount);
+            outputsItem.text.text = "Outputs - " + populationManager.OutputsCount;
         }
 
         private void Refresh()
         {
-            populationCountItem.text.text = string.Format(populationCountItem.text.text, populationManager.PopulationCount);
-            populationCountItem.text.text = string.Format(populationCountItem.text.text, populationManager.EliteCount);
-            mutationChanceItem.text.text = string.Format(mutationChanceItem.text.text, (int)(populationManager.MutationChance * 100));
-            mutationRateItem.text.text = string.Format(mutationRateItem.text.text, (int)(populationManager.MutationRate * 100));
-            hiddenLayersItem.text.text = string.Format(hiddenLayersItem.text.text, populationManager.HiddenLayers);
-            neuronsPerLayerItem.text.text = string.Format(neuronsPerLayerItem.text.text, populationManager.NeuronsCountPerHL);
-            biasItem.text.text = string.Format(biasItem.text.text, populationManager.Bias.ToString("0.00"));
-            sigmoidSlopeItem.text.text = string.Format(sigmoidSlopeItem.text.text, populationManager.Sigmoid.ToString("0.00"));
-            inputsItem.text.text = string.Format(inputsItem.text.text, populationManager.InputsCount);
-            outputsItem.text.text = string.Format(outputsItem.text.text, populationManager.OutputsCount);
+            populationCountItem.text.text = "Population Count - " + populationManager.PopulationCount;
+            eliteCountItem.text.text = "Elite Count - " + populationManager.EliteCount;
+            mutationChanceItem.text.text = "Mutation Chance - " + (int)(populationManager.MutationChance * 100);
+            mutationRateItem.text.text = "Mutation Rate - " + (int)(populationManager.MutationRate * 100);
+            hiddenLayersItem.text.text = "Hidden Layers - " + populationManager.HiddenLayers;
+            neuronsPerLayerItem.text.text = "Neurons Per HL - " + populationManager.NeuronsCountPerHL;
+            biasItem.text.text = "Bias - " + populationManager.Bias.ToString("0.00");
+            sigmoidSlopeItem.text.text = "Sigmoid - " + populationManager.Sigmoid.ToString("0.00");
+            inputsItem.text.text = "Inputs - " + populationManager.InputsCount;
+            outputsItem.text.text = "Outputs - " + populationManager.OutputsCount;
         }
     }
 }

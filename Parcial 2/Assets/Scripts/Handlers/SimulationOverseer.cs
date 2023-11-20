@@ -131,7 +131,7 @@ namespace Handlers.Simulation
 
         private void UpdateTurnWhenNeeded()
         {
-            if (currentTurn > maxTurnsAllowed)
+            if (currentTurn < maxTurnsAllowed)
             {
                 if (CheckIfAllAgentsDone())
                 {
@@ -208,7 +208,7 @@ namespace Handlers.Simulation
                         {
                             if (leftToRightCells[i] != null)
                             {
-                                finalTeamPositions.Add(leftToRightCells[i].Position);
+                                finalTeamPositions.Add(leftToRightCells[j].Position);
                             }
                         }
                     }

@@ -44,7 +44,7 @@ namespace Entities.Food
             foodInMap = new List<Food>();
             foodItemsInMap = new List<FoodItem>();
 
-            for(int i = 0; i< foodPositions.Count; i++)
+            for(int i = 0; i < foodPositions.Count; i++)
             {
                 //If the position is valid
                 if (foodPositions[i] != Constants.InvalidPosition)
@@ -55,9 +55,9 @@ namespace Entities.Food
                     foodInMap.Add(food);
 
                     FoodItem foodItem = Instantiate(foodItemToInstantiate, new Vector3(food.Position.x, food.Position.y, 0), 
-                        Quaternion.identity);
+                        Quaternion.identity, foodHolder);
 
-                    //foodItem.SetFoodData(food);
+                    foodItem.SetFoodData(food);
                     foodItem.name = "Food " + foodPositions[i].ToString();
                     foodItemsInMap.Add(foodItem);
                 }
@@ -67,7 +67,7 @@ namespace Entities.Food
         public void Unload()
         {
             //Clear lists, destroy GameObjects in map and reset lists to null
-            for(int i = 0; i< foodItemsInMap.Count; i++)
+            for(int i = 0; i < foodItemsInMap.Count; i++)
             {
                 if (foodItemsInMap[i] != null)
                     Destroy(foodItemsInMap[i]);

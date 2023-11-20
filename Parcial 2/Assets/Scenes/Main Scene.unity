@@ -4367,7 +4367,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -7704,7 +7704,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 1
   AgentInstance: {fileID: 64997787032585358, guid: ae89e42e307bf2a4ea3bca245af88edb, type: 3}
-  PopulationCount: 40
+  PopulationCount: 100
   IterationCount: 1
   EliteCount: 4
   MutationChance: 0.1
@@ -10081,7 +10081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 2
   AgentInstance: {fileID: 7955757012675990154, guid: 4fc1665000126534a9ff0c1632b17037, type: 3}
-  PopulationCount: 40
+  PopulationCount: 100
   IterationCount: 1
   EliteCount: 4
   MutationChance: 0.1

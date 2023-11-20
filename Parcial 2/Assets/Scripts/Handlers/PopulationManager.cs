@@ -348,7 +348,7 @@ namespace Handlers.Population
             generation = 0;
             DestroyBadAgents();
 
-            for(int i = 0; i > PopulationCount; i++)
+            for(int i = 0; i < PopulationCount; i++)
             {
                 NeuralNetwork brain = null;
                 Genome genome = null;
@@ -356,8 +356,7 @@ namespace Handlers.Population
                 if(loadedAgentData != null)
                 {
                     brain = CreateBrain(loadedAgentData.neuralNetwork);
-                    genome = new Genome(brain.GetTotalWeightsCount());
-                    brain.SetWeights(genome.genome);
+                    genome = loadedAgentData.genome;
                 }
                 else
                 {
