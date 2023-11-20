@@ -47,7 +47,7 @@ namespace Handlers.Map
 
     public class MapHandler : MonoBehaviour
     {
-        [Range(100, 500), Tooltip("Max Size Of The Grid")] public Vector2Int gridSize;
+        [Tooltip("Max Size Of The Grid")] public Vector2Int gridSize;
         [Tooltip("Physical Size of Cells on the Map")] public Vector2Int cellSize = default;
 
         public float offsetPerCell = 0;
@@ -80,9 +80,10 @@ namespace Handlers.Map
                         (int)(y * (cellSize.y + offsetPerCell)));
 
                     Cell gridCell=new Cell(cellPosition, cellSize);
+                    Vector2Int gridPosition = new Vector2Int(x, y);
 
                     if (!map.ContainsKey(cellPosition))
-                        map.Add(cellPosition, gridCell);
+                        map.Add(gridPosition, gridCell);
 
                     Instantiate(physicalCellPrefab, new Vector2(cellPosition.x, cellPosition.y), Quaternion.identity, parentForCells);
                 }

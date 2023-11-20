@@ -30,7 +30,7 @@ namespace Handlers.Cam
             }
         }
 
-        private void Start()
+        private void Awake()
         {
             if (mainCamera == null)
                 mainCamera = GetComponent<Camera>();
