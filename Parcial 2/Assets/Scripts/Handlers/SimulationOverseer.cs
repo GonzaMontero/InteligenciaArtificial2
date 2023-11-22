@@ -151,6 +151,7 @@ namespace Handlers.Simulation
                             if (teams[i] != null && teams[i].PopulationManager != null)
                             {
                                 teams[i].PopulationManager.UpdateTurn(currentTurn);
+                                OnTurnEnded();
                             }
                         }
                     }
@@ -163,6 +164,7 @@ namespace Handlers.Simulation
                 if (currentTurn == maxTurnsAllowed)
                 {
                     turnAmountText.text = "Turns: Simulation Finished";
+                    OnTurnEnded();
                     OnEndedAllTurns();
                 }
             }
@@ -182,6 +184,97 @@ namespace Handlers.Simulation
             }
 
             return completedTeams == teams.Count;
+        }
+
+        private void OnTurnEnded()
+        {
+            CheckAgentsOnSamePosition();
+            AgentEatFood();
+        }
+
+        private void CheckAgentsOnSamePosition()
+        {
+            List<AgentMind> agentsOnPosition = new List<AgentMind>();
+            int randomDecider = 0;
+
+            for(int i = 0; i < teams[0].PopulationManager.agentsInTeam.Count; i++)
+            {
+                for (int j = 0; j < teams[1].PopulationManager.agentsInTeam.Count; j++)
+                {
+                    if (teams[0].PopulationManager.agentsInTeam[i].transform.position ==
+                        teams[1].PopulationManager.agentsInTeam[j].transform.position)
+                    {
+                        agentsOnPosition.Add(teams[0].PopulationManager.agentsInTeam[i]);
+                        agentsOnPosition.Add(teams[1].PopulationManager.agentsInTeam[j]);
+                    }
+                }
+
+                if (agentsOnPosition.Count > 2)
+                {
+                    randomDecider = Random.Range(0, agentsOnPosition.Count);
+
+                    for (short j = 0; j < agentsOnPosition.Count; j++)
+                    {
+                        if (j != randomDecider)
+                        {
+                            for (int k = 0; k < teams.Count; k++)
+                            {
+                                teams[k].PopulationManager.RemoveAgentOnTeam(agentsOnPosition[j]);
+                            }
+                        }
+                    }
+                }
+
+                agentsOnPosition.Clear();
+            }
+
+            
+
+            //for(short i = 0 ; i < mapHandler.Map.Count; i++)
+            //{
+            //    for(int j = 0 ; j < teams.Count; j++)
+            //    {
+            //        for(int k = 0; k < teams[j].PopulationManager.agentsInTeam.Count; k++)
+            //        {
+            //            if (teams[j].PopulationManager.agentsInTeam[k] != null &&
+            //                mapHandler.Map.ContainsKey(new Vector2Int((int)teams[j].PopulationManager.agentsInTeam[k].transform.position.x,
+            //                (int)teams[j].PopulationManager.agentsInTeam[k].transform.position.y)))
+            //                    agentsOnPosition.Add(teams[j].PopulationManager.agentsInTeam[k]);
+            //        }
+            //    }
+
+            //    if(agentsOnPosition.Count > 2)
+            //    {
+            //        randomDecider = Random.Range(0, agentsOnPosition.Count);
+
+            //        for(short j = 0; j < agentsOnPosition.Count; j++)
+            //        {
+            //            if(j != randomDecider)
+            //            {
+            //                for(int k = 0; k < teams.Count; k++)
+            //                {
+            //                    teams[k].PopulationManager.RemoveAgentOnTeam(agentsOnPosition[j]);
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
+        }
+
+        private void AgentEatFood()
+        {
+            FoodItem foodItem;
+            for (int j = 0; j < teams.Count; j++)
+            {
+                for (int k = 0; k < teams[j].PopulationManager.agentsInTeam.Count; k++)
+                {
+                    foodItem = foodHandler.MapContainsFood(new Vector2Int((int)teams[j].PopulationManager.agentsInTeam[k].transform.position.x,
+                    (int)teams[j].PopulationManager.agentsInTeam[k].transform.position.y));
+
+                    if (foodItem != null && teams[j].PopulationManager.agentsInTeam[k] != null)
+                        teams[j].PopulationManager.agentsInTeam[k].AgentBehaviour.EatFood(foodItem);                      
+                }
+            }
         }
 
         private void OnStartedSimulation()

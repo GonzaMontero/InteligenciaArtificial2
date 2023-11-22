@@ -23,23 +23,14 @@ namespace Entities.Agents
         private FoodHandler foodHandler = null;
         private Action<Vector2Int> onFoodEaten = null;
 
-        private void OnTriggerEnter2D(Collider2D collision)
+        public void EatFood(FoodItem foodItem)
         {
-            if (collision.CompareTag("Food"))
-            {
-                Debug.Log("Collided with " + foodTag);
-                FoodItem food = null;
+            onFoodEaten?.Invoke(foodItem.FoodData.Position);
+            foodHandler.EatFood(foodItem.FoodData.Position);
 
-                if (collision.gameObject.TryGetComponent(out food))
-                {
-                    onFoodEaten?.Invoke(food.FoodData.Position);
-                    foodHandler.EatFood(food.FoodData.Position);
-
-                    collision.enabled = false;
-                    collision.gameObject.transform.localScale *= 1.05f;
-                    Destroy(collision.gameObject, 0.25f);
-                }
-            }
+            foodItem.enabled = false;
+            foodItem.gameObject.transform.localScale *= 1.05f;
+            Destroy(foodItem.gameObject, 0.25f);
         }
 
         public void SetBehaviourNeeds(Action<Vector2Int> onFoodEaten, FoodHandler foodHandler)

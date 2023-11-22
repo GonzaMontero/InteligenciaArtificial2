@@ -40,9 +40,9 @@ namespace Handlers.Population
         private MapHandler mapHandler = null;
         public FoodHandler foodHandler = null;
 
-        List<AgentMind> agentsInTeam = new List<AgentMind>();
-        List<Genome> population = new List<Genome>();
-        List<NeuralNetwork> brains = new List<NeuralNetwork>();
+        public List<AgentMind> agentsInTeam = new List<AgentMind>();
+        public List<Genome> population = new List<Genome>();
+        public List<NeuralNetwork> brains = new List<NeuralNetwork>();
 
         bool isRunning = false;
 
@@ -340,6 +340,17 @@ namespace Handlers.Population
                         agent.Think(dt, actualTurn, IterationCount, mapHandler, foodHandler);
                     }
                 }
+            }
+        }
+
+        public void RemoveAgentOnTeam(AgentMind agent)
+        {
+            if (agentsInTeam.Contains(agent))
+            {
+                agentsInTeam.Remove(agent);
+                brains.Remove(agent.NeuralNetwork);
+                population.Remove(agent.Genome);
+                Destroy(agent.gameObject);
             }
         }
 

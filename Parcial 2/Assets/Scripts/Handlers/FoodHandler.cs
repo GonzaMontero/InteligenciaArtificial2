@@ -106,6 +106,19 @@ namespace Entities.Food
                 foodInMap.Remove(toRemove);
             }
         }
+
+        public FoodItem MapContainsFood(Vector2Int foodPos)
+        {
+            for(int i = 0; i < FoodInMap.Count; i++) 
+            {
+                if (foodInMap[i] != null && foodInMap[i].Position == foodPos) 
+                {
+                    return foodItemsInMap[i];
+                }
+            }
+
+            return null;
+        }
     }
 }
 
