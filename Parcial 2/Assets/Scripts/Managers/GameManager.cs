@@ -191,7 +191,7 @@ namespace IA.Managers
                 if (_currentGeneration < gameplayConfiguration.GenerationsBeforeEvolutionStart)
                 {
                     greenGenerationData = _generationManager.GetEliteOfGeneration(GreenGenomeData, gameplayConfiguration.GreenAgentsList);
-                    redGenerationData =  _generationManager.GetEliteOfGeneration(RedGenomeData, gameplayConfiguration.GreenAgentsList);
+                    redGenerationData =  _generationManager.GetEliteOfGeneration(RedGenomeData, gameplayConfiguration.RedAgentsList);
                 }
                 else
                 {
