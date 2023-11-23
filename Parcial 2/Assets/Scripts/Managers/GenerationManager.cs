@@ -20,6 +20,7 @@ namespace IA.Managers
                 brain.AddNeuronLayer(data.neuronCountPerHiddenLayer, data.bias, data.sigmoid);
             }
             brain.AddNeuronLayer(data.outputsCount, data.bias, data.sigmoid);
+			brain.SetWeights(data.weighs);
 
             Genome genome = new Genome(brain.GetTotalWeightsCount());
             if (data.genome is { Length: > 0 })
@@ -34,6 +35,12 @@ namespace IA.Managers
         {
 	        agentsList.Sort((a, b) => a.Fitness > b.Fitness ? 0 : 1);
 	        return agentsList[0].AgentGenome.genome;
+        }
+
+		public float[] GetBestWeighsOfAgentsList(List<Agent> agentsList)
+		{
+            agentsList.Sort((a, b) => a.Fitness > b.Fitness ? 0 : 1);
+            return agentsList[0].AgentBrain.GetWeights();
         }
         
         public List<AgentGenerationData> GetNewGenerationData(GenomeData genomeData, List<Agent> agentsList)
