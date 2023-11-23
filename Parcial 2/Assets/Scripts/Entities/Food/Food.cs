@@ -1,19 +1,19 @@
-using Entities.Agents;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entities.Food
+namespace IA.Gameplay
 {
-    public class Food : FoodBase
+    public class Food : MonoBehaviour, IFood
     {
-        [SerializeField] private int bonusFirness = 200;
-        public Vector2Int CurrentPosition {  get; set; }
 
-        protected override void GetEaten(Agent agent)
+        [SerializeField] private int bonusFitness = 200;
+        
+        public Vector2Int CurrentPosition { get; set; }
+        public void GetEaten(Agent agent)
         {
-            agent.Eat(bonusFirness);
+            agent.Eat(bonusFitness);
             Destroy(gameObject);
         }
     }
+    
 }
+

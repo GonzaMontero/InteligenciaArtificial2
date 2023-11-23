@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Entities.Agents
+namespace IA.Gameplay
 {
+
     public static class Movement
     {
-        public static MoveDirection GetRandom()
-        {
-            int random = Random.Range(0, (int)MoveDirection.Down);
-            return (MoveDirection)random;
-        }
 
+        public static MoveDirection GetRandomDirection()
+        {
+            int randomIndex = Random.Range(0, (int)MoveDirection.Size);
+            return (MoveDirection)randomIndex;
+        }
         public enum MoveDirection
         {
             Left,
             Right,
             Up,
-            Down
+            Down,
+            Size
         }
     }
 }
