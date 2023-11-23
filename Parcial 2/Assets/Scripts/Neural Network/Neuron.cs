@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[System.Serializable]
 public class Neuron
 {
 	private float[] weights;
@@ -44,8 +43,7 @@ public class Neuron
 	{
 		for (int i = 0; i < weights.Length; i++)
 		{
-			if(i + fromId < newWeights.Length)
-				this.weights[i] = newWeights[i + fromId];
+			this.weights[i] = newWeights[i + fromId];
 		}
 
 		return fromId + weights.Length;

@@ -1,21 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class Genome
 {
 	public float[] genome;
 	public float fitness = 0;
-	public int foodEaten = 0;
-	public int generationsSurvived = 0;
 
 	public Genome(float[] genes)
 	{
 		this.genome = genes;
 		fitness = 0;
-		foodEaten = 0;
-		generationsSurvived = 0;
 	}
 
 	public Genome(int genesCount)
@@ -26,9 +21,6 @@ public class Genome
             genome[j] = Random.Range(-1.0f, 1.0f);
 
         fitness = 0;
-
-		foodEaten = 0;
-		generationsSurvived = 0;
 	}
 
     public Genome()
@@ -69,7 +61,7 @@ public class GeneticAlgorithm
     }
 
 
-	public Genome[] Epoch(Genome[] oldGenomes, int allPopulation, int foodNeededToSurvive)
+	public Genome[] Epoch(Genome[] oldGenomes)
 	{
 		totalFitness = 0;
 
@@ -86,25 +78,9 @@ public class GeneticAlgorithm
 
 		SelectElite();
 
-		int genomesThatCanSurvive = 0;
-		
-		for(int i = 0; i < population.Count; i++)
+		while (newPopulation.Count < population.Count)
 		{
-			if (population[i] != null && population[i].foodEaten > foodNeededToSurvive)
-				genomesThatCanSurvive++;
-		}
-
-		if (genomesThatCanSurvive >= 2)
-		{
-            while (newPopulation.Count < allPopulation)
-            {
-                Crossover();
-            }
-        }
-		else
-		{
-			newPopulation.AddRange(population);
-			newPopulation = newPopulation.Distinct().ToList();
+			Crossover();
 		}
 
 		return newPopulation.ToArray();
@@ -122,9 +98,6 @@ public class GeneticAlgorithm
 	{
 		Genome mom = RouletteSelection();
 		Genome dad = RouletteSelection();
-
-		if (mom == null || dad == null)
-			return;
 
 		Genome child1;
 		Genome child2;
@@ -199,19 +172,4 @@ public class GeneticAlgorithm
 		return null;
 	}
 
-	public Genome SelectCorrectGenomeToSurvive(int foodRequired)
-	{
-		Genome genomeToSurvive = null;
-
-		for(int i = 0; i < population.Count; i++)
-		{
-			if (population[i]!=null && population[i].foodEaten >= foodRequired)
-			{
-				genomeToSurvive = population[i];
-				break;
-			}
-		}
-
-		return genomeToSurvive;
-	}
 }

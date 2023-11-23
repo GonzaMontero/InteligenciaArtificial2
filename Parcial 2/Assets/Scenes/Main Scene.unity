@@ -7717,6 +7717,8 @@ MonoBehaviour:
   Sigmoid: 0.5
   saveDataOnNextEvolve: 0
   foodHandler: {fileID: 0}
+  agentsInTeam: []
+  brains: []
 --- !u!1 &892007601
 GameObject:
   m_ObjectHideFlags: 0
@@ -10094,6 +10096,8 @@ MonoBehaviour:
   Sigmoid: 0.5
   saveDataOnNextEvolve: 0
   foodHandler: {fileID: 0}
+  agentsInTeam: []
+  brains: []
 --- !u!1 &1117247139
 GameObject:
   m_ObjectHideFlags: 0
