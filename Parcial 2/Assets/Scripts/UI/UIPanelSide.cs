@@ -41,6 +41,16 @@ namespace IA.UI
             loadButton.onClick.AddListener(delegate
             {
                 _data = SaveSystem.SaveSystem.LoadFromStreamingAssets<GenomeData>(loadPathInputField.text);
+
+                if(team == GenomeTeam.Red)
+                {
+                    GameManager.Instance.RedGenomeData = _data;
+                }
+                else
+                {
+                    GameManager.Instance.GreenGenomeData = _data;
+                }
+
                 SetAllUI();
             });
             
