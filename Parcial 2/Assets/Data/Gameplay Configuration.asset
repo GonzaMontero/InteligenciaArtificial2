@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18aec162389872746992864e53021cc5, type: 3}
+  m_Name: Gameplay Configuration
+  m_EditorClassIdentifier: 
+  terrainPrefab: {fileID: 2342764584607964025, guid: d17575793a5e64a4eacccb85f628498a, type: 3}
+  terrainCount: {x: 100, y: 100}
+  eachTerrainSize: {x: 1, y: 0, z: 1}
+  topAgentPrefabs: {fileID: 2775636321639136740, guid: e0e6f8cc1c6516d4092322bdff56e4d6, type: 3}
+  botAgentPrefabs: {fileID: 8177836796039023692, guid: 1a5f719b8bb7ece41aefbd7cc6644bb6, type: 3}
+  agentSpawnOffset: {x: 0, y: 0.2, z: 0}
+  foodPrefab: {fileID: 6247847804801623346, guid: dfefd44105ecaf743aab3fc1f5bb57aa, type: 3}
+  foodSpawnOffset: {x: 0, y: 0.2, z: 0}
