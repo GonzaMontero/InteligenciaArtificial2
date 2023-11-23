@@ -5,7 +5,6 @@ public class GenomeData
     public float mutationRate = 0.01f;
     
     public float[] genome;
-    public float[] weighs;
     public int populationCount;
     public int inputsCount;
     public int hiddenLayers;
@@ -40,7 +39,6 @@ public class GenomeData
         neuronCountPerHiddenLayer = copy.neuronCountPerHiddenLayer;
         bias = copy.bias;
         sigmoid = copy.sigmoid;
-        weighs = copy.weighs;
     }
     
 }

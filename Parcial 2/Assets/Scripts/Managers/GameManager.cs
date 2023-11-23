@@ -219,26 +219,15 @@ namespace IA.Managers
                     var bestGreenGenome = gameplayConfiguration.GreenAgentsList.Count > 0
                         ? _generationManager.GetBestGenomeOfAgentsList(gameplayConfiguration.GreenAgentsList)
                         : _generationManager.GetBestGenomeOfAgentsList(gameplayConfiguration.RedAgentsList);
-                    var bestGreenWeigh = gameplayConfiguration.GreenAgentsList.Count > 0
-                        ? _generationManager.GetBestWeighsOfAgentsList(gameplayConfiguration.GreenAgentsList)
-                        : _generationManager.GetBestWeighsOfAgentsList(gameplayConfiguration.RedAgentsList);
-
+                    
                     GreenGenomeData.genome = bestGreenGenome;
-                    GreenGenomeData.weighs = bestGreenWeigh;
-
                     SaveSystem.SaveSystem.SaveToStreamingAssets(GreenGenomeData, greenTeamFilePath);
-
+                    
                     string redTeamFilePath = "Dead Generation " + _currentGeneration + " ~ Team Red ~ " + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second + ".genomeData";
                     var bestRedGenome = gameplayConfiguration.RedAgentsList.Count > 0
                         ? _generationManager.GetBestGenomeOfAgentsList(gameplayConfiguration.RedAgentsList)
                         : _generationManager.GetBestGenomeOfAgentsList(gameplayConfiguration.GreenAgentsList);
-                    var bestRedWeigh = gameplayConfiguration.RedAgentsList.Count > 0
-                        ? _generationManager.GetBestWeighsOfAgentsList(gameplayConfiguration.RedAgentsList)
-                        : _generationManager.GetBestWeighsOfAgentsList(gameplayConfiguration.GreenAgentsList);
-
                     RedGenomeData.genome = bestRedGenome;
-                    RedGenomeData.weighs = bestRedWeigh;
-
                     SaveSystem.SaveSystem.SaveToStreamingAssets(RedGenomeData, redTeamFilePath);
 
                     if (ReviveSimulation)
@@ -252,7 +241,6 @@ namespace IA.Managers
                 
                 gameplayConfiguration.ClearAllAgentsAndFood();
                     
-
                 gameplayConfiguration.CreateAgents(greenGenerationData, redGenerationData);
                 gameplayConfiguration.CreateFood(gameplayConfiguration.StartingFood);
                 
@@ -262,9 +250,7 @@ namespace IA.Managers
                 {
                     string greenTeamFilePath = "Generation " + _currentGeneration + " ~ Team Green ~ " + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second;
                     var bestGreenGenome = _generationManager.GetBestGenomeOfAgentsList(gameplayConfiguration.GreenAgentsList);
-                    var bestGreenWeighs = _generationManager.GetBestWeighsOfAgentsList(gameplayConfiguration.GreenAgentsList);
                     GreenGenomeData.genome = bestGreenGenome;
-                    GreenGenomeData.weighs = bestGreenWeighs;
                     SaveSystem.SaveSystem.SaveToStreamingAssets(GreenGenomeData, greenTeamFilePath);
                 }
 
@@ -272,9 +258,7 @@ namespace IA.Managers
                 {
                     string redTeamFilePath = "Generation " + _currentGeneration + " ~ Team Red ~ " + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second;
                     var bestRedGenome = _generationManager.GetBestGenomeOfAgentsList(gameplayConfiguration.RedAgentsList);
-                    var bestRedWeighs = _generationManager.GetBestWeighsOfAgentsList(gameplayConfiguration.RedAgentsList);
                     RedGenomeData.genome = bestRedGenome;
-                    RedGenomeData.weighs = bestRedWeighs;
                     SaveSystem.SaveSystem.SaveToStreamingAssets(RedGenomeData, redTeamFilePath);
                 }
 
